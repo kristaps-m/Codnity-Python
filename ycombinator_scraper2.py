@@ -57,54 +57,83 @@ first_b = all_at_subline[0]
 # else:
 # 	print("NO")
 #"""
+big_2d_list = []
 
-# ---------ADD TO DATABSE ------------- 
-# test_list = [
-# 	["test title 1", "https://test.link.com", 10, "2021-11-07 17:56:16"],
-# 	["test title 2", "https://test.link.com", 20, "2022-12-07 17:56:16"]
-# 	]
+def create_2d_list(titleAndLink, pointsAndDate):
+	temporary_list = []
+	for t_and_l, p_and_d in zip(titleAndLink, pointsAndDate):
+		big_2d_list.append(append_to_list(t_and_l, p_and_d, temporary_list))
 
-# DRIVER = "SQL Server"
-# SERVER_NAME = "DESKTOP-P3PDNDA"
-# DATABASE_NAME = "y-combinator"
+	return 1
 
-# conn_string = f"""
-# 	Driver={{{DRIVER}}};
-# 	Server={SERVER_NAME};
-# 	Database={DATABASE_NAME};
-# 	Trust_connection=yes;
-# """
+def append_to_list(titleAndLink, pointsAndDate, tempListToAppend):
+	if(titleAndLink.get("id") == pointsAndDate.span.get("id").split("score_")[1]):
+		#print("YES ----------- Id's are the same")
+		the_title = str(titleAndLink.find(class_="titleline").a.get_text()).replace("\n","")
+		the_link = add_link(str(titleAndLink.find(class_="titleline").a.get("href")).replace("\n",""))
+		the_points = int(pointsAndDate.span.get_text().split(" ")[0])
+		the_date_created = pointsAndDate.find(class_="age").get("title").replace("T", " ")
+		tempListToAppend = [the_title, the_link, the_points, the_date_created]
+		# print(str(AAA.find(class_="titleline").a.get_text()).replace("\n","")) 
+		# print(add_link(str(AAA.find(class_="titleline").a.get("href")).replace("\n",""))) 
+		# print(int(BBB.span.get_text().split(" ")[0]))
+		# print(BBB.find(class_="age").get("title").replace("T", " "))
+	else:
+		print("NO")
 
-# try:
-# 	conn = data_handler.connect(conn_string)
-# except Exception as e:
-# 	print(e)
-# 	print("Connection failed")
-# 	sys.exit()
-# else:
-# 	cursor = conn.cursor()
+	return tempListToAppend
 
-# insert_statement = """
-# 	INSERT INTO scraped_data
-# 	VALUES (?, ?, ?, ?)
-# """
+create_2d_list(all_at_athing, all_at_subline)
 
-# try:
-# 	for record in test_list:
-# 		print(record)
-# 		cursor.execute(insert_statement, record)
-# except Exception as e:
-# 	cursor.rollback()
-# 	print(e.value)
-# 	print("Transaction failed = rollback")
-# else:
-# 	print("Records inserted successfully")
-# 	cursor.commit()
-# 	cursor.close()
-# finally:
-# 	if conn.connected == 1:
-# 		print("Connection closed successfully")
-# 		conn.close()
+# for mini_list in big_2d_list:
+# 	print(mini_list)
+#---------ADD TO DATABSE ------------- 
+test_list = [
+	["test title 1", "https://test.link.com", 10, "2021-11-07 17:56:16"],
+	["test title 2", "https://test.link.com", 20, "2022-12-07 17:56:16"]
+	]
+
+DRIVER = "SQL Server"
+SERVER_NAME = "DESKTOP-P3PDNDA"
+DATABASE_NAME = "y-combinator"
+
+conn_string = f"""
+	Driver={{{DRIVER}}};
+	Server={SERVER_NAME};
+	Database={DATABASE_NAME};
+	Trust_connection=yes;
+"""
+
+try:
+	conn = data_handler.connect(conn_string)
+except Exception as e:
+	print(e)
+	print("Connection failed")
+	sys.exit()
+else:
+	cursor = conn.cursor()
+
+insert_statement = """
+	INSERT INTO scraped_data_2
+	VALUES (?, ?, ?, ?)
+"""
+
+try:
+	for record in big_2d_list: # test_list
+		print(record)
+		cursor.execute(insert_statement, record)
+except Exception as e:
+	cursor.rollback()
+	print(e.value)
+	print("Transaction failed = rollback")
+else:
+	print("Records inserted successfully")
+	cursor.commit()
+	cursor.close()
+finally:
+	if conn.connected == 1:
+		print("Connection closed successfully")
+		conn.close()
 
 
 # END OF ADDING TO DATABSE -----------------------
