@@ -173,10 +173,24 @@ def insert_data_to_database():
 		VALUES (?, ?, ?, ?, ?)
 	"""
 
+	#ultimate_insert_statement = 
+
+
+
 	try:
 		for record in big_2d_list: # test_list # big_2d_list
 			print(record)
-			cursor.execute(insert_statement, record)
+			# [the_id, title, link, points, "2021-11-07 17:56:16"],
+			cursor.execute(f"""
+insert into scraped_data (the_id, title, link, points, date_created)
+select * from (
+values ({record[0]}, '{record[1].replace("'", "")}', '{record[2]}', {record[3]}, '{record[4]}') -- insert values
+) as s(the_id, title, link, points, date_created)
+where not exists (
+select * from scraped_data t with (updlock)
+where s.the_id = t.the_id
+)
+""") # insert_statement, record
 	except Exception as e:
 		cursor.rollback()
 		print(e.value)
@@ -235,9 +249,28 @@ def update_database():
 	return ":)"
 
 # call insert
-#insert_data_to_database()
+insert_data_to_database()
 # CALL UPDATE FUNCTION!!!!
 #update_database()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # END OF ADDING TO DATABSE -----------------------
 # a = 0
