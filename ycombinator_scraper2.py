@@ -3,41 +3,74 @@ from bs4 import BeautifulSoup
 import pypyodbc as data_handler
 import sys
 
-response = requests.get("https://news.ycombinator.com/") # https://news.ycombinator.com/?p=3
-if response.status_code != 200:
-	print("Error fetching page")
-	exit()
-else:
-	content = response.content
-#print(content)
+"""GLOBAL VARIABLES"""
+big_2d_list = []
+how_many_pages_from_site = 4
 
-soup = BeautifulSoup(response.content, 'html.parser')
-#"""
-# def test_yolo(AAA, BBB):
-# 	if(AAA.get("id") == BBB.span.get("id").split("score_")[1]):
-# 		#print("YES ----------- Id's are the same")
-# 		print(str(AAA.find(class_="titleline").a.get_text()).replace("\n","")) 
-# 		print(add_link(str(AAA.find(class_="titleline").a.get("href")).replace("\n",""))) 
-# 		print(int(BBB.span.get_text().split(" ")[0]))
-# 		print(BBB.find(class_="age").get("title").replace("T", " "))
-# 	else:
-# 		print("NO")
+
+def get_one_page():
+	response = requests.get("https://news.ycombinator.com/") # https://news.ycombinator.com/?p=3
+	if response.status_code != 200:
+		print("Error fetching page")
+		exit()
+	else:
+		content = response.content
+	#print(content)
+
+	soup = BeautifulSoup(response.content, 'html.parser')
+	#"""
+
+	all_at_athing = [a for a in soup.find_all(class_="athing")]
+	all_at_subline = [a for a in soup.find_all(class_="subline")]
+	
+	return [all_at_athing, all_at_subline]
+#all_at_things = [a for a in soup.find_all(class_="titleline")]  #  "athing"
+#all_subtext = [a for a in soup.find_all(class_="subtext")]
+# all_at_athing = get_one_page()[0]
+# all_at_subline = get_one_page()[1]
+
+def get_more_than_one_page(how_many):
+	big_all_at_athing = []
+	big_all_at_subline = []
+	for i in range(1, how_many+1):
+		response = requests.get(f"https://news.ycombinator.com/?p={i}") # https://news.ycombinator.com/?p=3
+		if response.status_code != 200:
+			print("Error fetching page")
+			exit()
+		else:
+			content = response.content
+		soup = BeautifulSoup(response.content, 'html.parser')
+		all_at_athing = [a for a in soup.find_all(class_="athing")]
+		all_at_subline = [a for a in soup.find_all(class_="subline")]
+		# for item in all_at_athing:
+		# 	big_all_at_athing.append(item)
+		# for item in all_at_subline:
+		# 	big_all_at_subline.append(item)
+		for titleAndLink in all_at_athing:
+			print("Comparring Id's prepering data ....!")
+			for pointsAndDate in  all_at_subline:
+				if(titleAndLink.get("id") == pointsAndDate.span.get("id").split("score_")[1]):
+					#print(titleAndLink)
+					#print(pointsAndDate)
+					print(titleAndLink.get("id"), pointsAndDate.span.get("id").split("score_")[1])
+					big_all_at_athing.append(titleAndLink)
+					big_all_at_subline.append(pointsAndDate)
+					break
+
+	return [big_all_at_athing, big_all_at_subline]
 
 def add_link(the_link):
 	if(the_link.startswith("item")):
 		return "https://news.ycombinator.com/" + the_link
 	return the_link
 
-all_at_athing = [a for a in soup.find_all(class_="athing")]
-all_at_subline = [a for a in soup.find_all(class_="subline")]
-#all_at_things = [a for a in soup.find_all(class_="titleline")]  #  "athing"
-#all_subtext = [a for a in soup.find_all(class_="subtext")]
+all_at_athing = get_more_than_one_page(how_many_pages_from_site)[0]
+all_at_subline = get_more_than_one_page(how_many_pages_from_site)[1]
+print("Data scraped and prepered!")
+
 print(len(all_at_athing), len(all_at_subline)) # , len(all_at_things), len(all_subtext)
-
-
-
 # for a,b in zip(all_at_athing, all_at_subline):
-# 	test_yolo(a, b)
+# 	print(a.titleAndLink.get("id"), b.pointsAndDate.span.get("id").split("score_")[1]) #
 # 	print("-------------- end --------")
 first = all_at_athing[0]
 first_b = all_at_subline[0]
@@ -57,19 +90,20 @@ first_b = all_at_subline[0]
 # else:
 # 	print("NO")
 #"""
-big_2d_list = []
+
 
 def create_2d_list(titleAndLink, pointsAndDate):
 	temporary_list = []
 	for t_and_l, p_and_d in zip(titleAndLink, pointsAndDate):
-		appendable_list = append_to_list(t_and_l, p_and_d, temporary_list)
+		appendable_list = append_to_list_with_id_check(t_and_l, p_and_d, temporary_list)
+		#appendable_list = append_to_list_no_check(t_and_l, p_and_d, temporary_list)
 		if(len(appendable_list) > 0):
 			big_2d_list.append(appendable_list)
 		else:
 			print("No append")
 	return 1
 
-def append_to_list(titleAndLink, pointsAndDate, tempListToAppend):
+def append_to_list_with_id_check(titleAndLink, pointsAndDate, tempListToAppend):
 	if(titleAndLink.get("id") == pointsAndDate.span.get("id").split("score_")[1]):
 		#print("YES ----------- Id's are the same")
 		the_id = int(titleAndLink.get("id"))
@@ -81,9 +115,21 @@ def append_to_list(titleAndLink, pointsAndDate, tempListToAppend):
 		# print(str(AAA.find(class_="titleline").a.get_text()).replace("\n","")) 
 		# print(add_link(str(AAA.find(class_="titleline").a.get("href")).replace("\n",""))) 
 		# print(int(BBB.span.get_text().split(" ")[0]))
-		# print(BBB.find(class_="age").get("title").replace("T", " "))
+		# print(BBB.find(class_="age").get("title").replace("T", " "))		
 	else:
-		print("NO")
+		the_id = int(titleAndLink.get("id"))
+		the_second_id = pointsAndDate.span.get("id").split("score_")[1]
+		print(f"NO -------- {the_id} and {the_second_id}")
+
+	return tempListToAppend
+
+def append_to_list_no_check(titleAndLink, pointsAndDate, tempListToAppend):
+	the_id = int(titleAndLink.get("id"))
+	the_title = str(titleAndLink.find(class_="titleline").a.get_text()).replace("\n","")
+	the_link = add_link(str(titleAndLink.find(class_="titleline").a.get("href")).replace("\n",""))
+	the_points = int(pointsAndDate.span.get_text().split(" ")[0])
+	the_date_created = str(pointsAndDate.find(class_="age").get("title").replace("T", " ")).replace("\n","")
+	tempListToAppend = [the_id, the_title, the_link, the_points, the_date_created]
 
 	return tempListToAppend
 
@@ -166,14 +212,6 @@ def update_database():
 	else:
 		cursor = conn.cursor()
 
-	insert_statement = """
-		INSERT INTO scraped_data
-		VALUES (?, ?, ?, ?, ?)
-	"""
-	update_statement = """
-		UPDATE scraped_data SET points = 'Canyon 123' WHERE address = 'Valley 345'
-	"""
-
 	try:
 		for record in big_2d_list: # test_list # big_2d_list
 			print(record)
@@ -194,13 +232,12 @@ def update_database():
 			print("Connection closed successfully")
 			conn.close()
 
-
 	return ":)"
 
 # call insert
 #insert_data_to_database()
 # CALL UPDATE FUNCTION!!!!
-update_database()
+#update_database()
 
 # END OF ADDING TO DATABSE -----------------------
 # a = 0
