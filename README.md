@@ -2,6 +2,8 @@
 Creating C# backend and React F.E.
 https://www.youtube.com/watch?v=ON-Z1iD6Y-c
 19:20 adds method to add something to table, but we don't need that!
+23:50 Adds another controller
+34:24 Creates Variables.js
 
 
 Trusted connection
