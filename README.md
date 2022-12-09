@@ -1,3 +1,13 @@
+
+Creating C# backend and React F.E.
+https://www.youtube.com/watch?v=ON-Z1iD6Y-c
+19:20 adds method to add something to table, but we don't need that!
+
+
+Trusted connection
+https://stackoverflow.com/questions/8075784/error-message-provider-shared-memory-provider-error-0-no-process-is-on-th
+
+
 f"""
 insert into [y-combinator].[dbo].[scraped_data] ([the_id]
 ,[title]
