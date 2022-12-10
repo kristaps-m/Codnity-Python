@@ -13,7 +13,7 @@ import { BrowserRouter, Route, Routes, NavLink } from 'react-router-dom';
 
 function App() {
 
-  const [posts, setPosts] = useState([]);
+  const [hackerdataList, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
@@ -33,7 +33,7 @@ function App() {
     // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = hackerdataList.slice(indexOfFirstPost, indexOfLastPost);
 
    // Change page
   const paginate = pageNumber => setCurrentPage(pageNumber);
@@ -47,7 +47,7 @@ function App() {
       <nav className='navbar navbar-expand-sm bg-light navbar-dark'>
         <ul className='navbar-nav'>
           <li className='nav-item- m-1'>
-            <NavLink className="btn btn-light btn-outline-primary" to="/home">
+            <NavLink className="btn btn-light btn-outline-primary" to="/">
               Home
             </NavLink>
           </li>
@@ -58,17 +58,28 @@ function App() {
           </li>
         </ul>
       </nav>
-      <DataTable posts={currentPosts} loading={loading} />
-      {/* <Posts posts={currentPosts} loading={loading} /> */}
+      {/* <DataTable hackerdataList={currentPosts} loading={loading} />      
       <Pagination
         postsPerPage={postsPerPage}
-        totalPosts={posts.length}
+        totalPosts={hackerdataList.length}
         paginate={paginate}
-      />
+      /> */}
+      {/* <Posts posts={currentPosts} loading={loading} /> */}
       <Routes>
-        <Route path='/home' element={<Home/>}/>
-        <Route path='/hackerdata' element={<HackerData/>}/>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/hackerdata' element={<>
+        <DataTable hackerdataList={currentPosts} loading={loading} />
+        <Pagination
+        postsPerPage={postsPerPage}
+        totalPosts={hackerdataList.length}
+        paginate={paginate}
+      /></>}/>
       </Routes>
+      {/* <Pagination
+        postsPerPage={postsPerPage}
+        totalPosts={hackerdataList.length}
+        paginate={paginate}
+      /> */}
     </div>
     </BrowserRouter>
   );

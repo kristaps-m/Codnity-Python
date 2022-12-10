@@ -5,7 +5,7 @@ function getDomain(urlIn) {
   return domain.hostname.replace('www.','');
 }
 
-const DataTable = ({ posts, loading }) => {
+const DataTable = ({ hackerdataList, loading }) => {
   if (loading) {
     return <h2>Loading...</h2>;
   }
@@ -34,7 +34,7 @@ const DataTable = ({ posts, loading }) => {
             </tr>
           </thead>
           <tbody>
-            {posts.map(item =>
+            {hackerdataList.map(item =>
               <tr key={item.the_id}>
                 {/* <td>{item.the_id}</td> */}
                 <td>{item.title}</td>
