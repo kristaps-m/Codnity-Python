@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import {variables} from './Variables.js'
 
+function getDomain(urlIn) {
+  let domain = (new URL(urlIn));
+  return domain.hostname.replace('www.','');
+}
+
 export class HackerData extends Component {
 
   constructor (props) {
@@ -51,7 +56,11 @@ export class HackerData extends Component {
               <tr key={item.the_id}>
                 <td>{item.the_id}</td>
                 <td>{item.title}</td>
-                <td>{item.link}</td>
+                <td>
+                  <a href={item.link}>                      
+                    {getDomain(item.link)}                      
+                  </a>
+                </td>
                 <td>{item.points}</td>
                 <td>{item.date_created}</td>                
               </tr>
