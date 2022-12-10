@@ -3,7 +3,13 @@ Creating C# backend and React F.E.
 https://www.youtube.com/watch?v=ON-Z1iD6Y-c
 19:20 adds method to add something to table, but we don't need that!
 23:50 Adds another controller
-34:24 Creates Variables.js
+36:24 Creates Variables.js
+38:32 manipulates table
+56:00 Starts to add filtering
+5?:00 Starts to add sorting
+
+paginator !
+https://www.youtube.com/watch?v=IYCa1F-OWmk
 
 
 Trusted connection

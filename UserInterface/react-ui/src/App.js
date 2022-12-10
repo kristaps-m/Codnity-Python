@@ -1,11 +1,43 @@
 import logo from './logo.svg';
+import axios from 'axios';
+import React, {Component, useState, useEffect} from 'react';
 import './App.css';
 import {Home} from './Home';
+import Posts from './components/Posts';
+import DataTable from './components/DataTable';
+import Pagination from './components/Pagination';
+import {variables} from './Variables.js'
 import { HackerData } from './HackerData';
 import { BrowserRouter, Route, Routes, NavLink } from 'react-router-dom'; 
 //  Switch
 
 function App() {
+
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(8);
+  const uri = variables.API_URL+'Hackerdata'
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      setLoading(true);
+      const res = await axios.get(uri); // 'https://jsonplaceholder.typicode.com/posts'
+      setPosts(res.data);
+      setLoading(false);
+    };
+
+    fetchPosts();
+  }, [uri]);
+
+    // Get current posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+   // Change page
+  const paginate = pageNumber => setCurrentPage(pageNumber);
+
   return (
     <BrowserRouter>
     <div className="App">
@@ -26,6 +58,13 @@ function App() {
           </li>
         </ul>
       </nav>
+      <DataTable posts={currentPosts} loading={loading} />
+      {/* <Posts posts={currentPosts} loading={loading} /> */}
+      <Pagination
+        postsPerPage={postsPerPage}
+        totalPosts={posts.length}
+        paginate={paginate}
+      />
       <Routes>
         <Route path='/home' element={<Home/>}/>
         <Route path='/hackerdata' element={<HackerData/>}/>

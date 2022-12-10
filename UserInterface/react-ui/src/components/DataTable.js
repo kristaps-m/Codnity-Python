@@ -1,35 +1,17 @@
-import React, {Component} from 'react';
-import {variables} from './Variables.js'
+import React from 'react';
 
 function getDomain(urlIn) {
   let domain = (new URL(urlIn));
   return domain.hostname.replace('www.','');
 }
 
-export class HackerData extends Component { 
-  constructor (props) {
-    super(props);
-
-    this.state ={
-      hackerdataList:[],
-    }
-  }  
-
-  refreshList(){
-    fetch(variables.API_URL+'Hackerdata')
-    .then(response => response.json())
-    .then(data => this.setState({hackerdataList:data}))
+const DataTable = ({ posts, loading }) => {
+  if (loading) {
+    return <h2>Loading...</h2>;
   }
 
-  componentDidMount(){
-    this.refreshList();
-  }
-
-  render (){
-    const {hackerdataList} = this.state;
-    
-    return (
-      <div>
+  return (
+    <div>
         <h3>This is HackerData page!</h3>
         <table className='table table-striped'>
           <thead>
@@ -52,7 +34,7 @@ export class HackerData extends Component {
             </tr>
           </thead>
           <tbody>
-            {hackerdataList.map(item =>
+            {posts.map(item =>
               <tr key={item.the_id}>
                 {/* <td>{item.the_id}</td> */}
                 <td>{item.title}</td>
@@ -68,6 +50,7 @@ export class HackerData extends Component {
           </tbody>
         </table>
       </div>
-    )
-  }
+  );
 };
+
+export default DataTable;
