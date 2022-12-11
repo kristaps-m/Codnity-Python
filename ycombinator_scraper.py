@@ -204,10 +204,11 @@ def update_database():
 
 #Step 5:
 while True:  
-  user_scrape_or_update_input = input("Enter 'scrape' or 'update'\nEnter: ")
+  user_scrape_or_update_input = input("Enter 'import' or 'update'\nEnter: ")
   
-  if(user_scrape_or_update_input == "scrape"):      
+  if(user_scrape_or_update_input.lower() == "import"):      
     print(f"Inserting data from {user_pages_input} pages")
+    print("Inserting....")
     # CALL INSERT FUNCTION!!!!
     insert_data_to_database()
   elif (user_scrape_or_update_input == "update"):

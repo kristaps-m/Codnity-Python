@@ -13,5 +13,3 @@
         public DateTime Date_Created { get; set; }
     }
 }
-
-// DESKTOP-P3PDNDA, y-combinator, dbo.scraped_data

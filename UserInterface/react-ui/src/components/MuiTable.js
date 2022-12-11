@@ -53,12 +53,6 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  // {
-  //   id: 'name',
-  //   numeric: false,
-  //   disablePadding: true,
-  //   label: 'Dessert (100g serving)',
-  // },
   {
     id: 'title',
     numeric: false,
@@ -67,7 +61,7 @@ const headCells = [
   },
   {
     id: 'Domain and Link',
-    numeric: true,
+    numeric: false,
     disablePadding: false,
     label: 'Domain and Link',
   },
@@ -138,6 +132,7 @@ function EnhancedTableToolbar(props) {
       sx={{
         pl: { sm: 2 },
         pr: { xs: 1, sm: 1 },
+        fontWeight: 'bold',
         ...(numSelected > 0 && {
           bgcolor: (theme) =>
             alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
@@ -146,7 +141,7 @@ function EnhancedTableToolbar(props) {
     >
       {numSelected > 0 ? (
         <Typography
-          sx={{ flex: '1 1 100%' }}
+          sx={{ flex: '1 1 100%',fontWeight: 'bold' }}
           color="inherit"
           variant="subtitle1"
           component="div"
@@ -160,7 +155,7 @@ function EnhancedTableToolbar(props) {
           id="tableTitle"
           component="div"
         >
-          data from news.ycombinator.com
+          Data from news.ycombinator.com
         </Typography>
       )}     
     </Toolbar>
@@ -249,7 +244,7 @@ export default function EnhancedTable({ hackerdataList}) {
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-              rowCount={hackerdataList.length} // rows.length
+              rowCount={hackerdataList.length}
             />
             <TableBody>
               {/* if you don't need to support IE11, you can replace the `stableSort` call with:
@@ -270,7 +265,7 @@ export default function EnhancedTable({ hackerdataList}) {
                       selected={isItemSelected}
                     >
                       <TableCell align="left">{row.title}</TableCell>
-                      <TableCell align="right">
+                      <TableCell align="left">
                         <a href={row.link} target="_blank" rel="noreferrer">{getDomain(row.link)}</a>
                         </TableCell>
                       <TableCell align="right">{row.points}</TableCell>
