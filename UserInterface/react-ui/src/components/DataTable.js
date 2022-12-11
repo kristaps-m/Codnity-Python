@@ -44,7 +44,7 @@ const DataTable = ({ hackerdataList, loading }) => {
                   </a>
                 </td>
                 <td>{item.points}</td>
-                <td>{item.date_created}</td>                
+                <td>{item.date_created.replace("T"," ")}</td>                
               </tr>
               )}
           </tbody>

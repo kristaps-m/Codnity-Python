@@ -1,28 +1,24 @@
-import logo from './logo.svg';
 import axios from 'axios';
-import React, {Component, useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import {Home} from './Home';
-import Posts from './components/Posts';
 import DataTable from './components/DataTable';
 import MuiTable from './components/MuiTable';
 import Pagination from './components/Pagination';
 import {variables} from './Variables.js'
 import { BrowserRouter, Route, Routes, NavLink } from 'react-router-dom'; 
-//  Switch
 
 function App() {
-
   const [hackerdataList, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(8);
+  const [postsPerPage] = useState(10);
   const uri = variables.API_URL+'Hackerdata'
 
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
-      const res = await axios.get(uri); // 'https://jsonplaceholder.typicode.com/posts'
+      const res = await axios.get(uri); 
       setPosts(res.data);
       setLoading(false);
     };
@@ -63,13 +59,6 @@ function App() {
           </li>
         </ul>
       </nav>
-      {/* <DataTable hackerdataList={currentPosts} loading={loading} />      
-      <Pagination
-        postsPerPage={postsPerPage}
-        totalPosts={hackerdataList.length}
-        paginate={paginate}
-      /> */}
-      {/* <Posts posts={currentPosts} loading={loading} /> */}
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/hackerdata' element={<>
@@ -79,13 +68,8 @@ function App() {
                 totalPosts={hackerdataList.length}
                 paginate={paginate}
             /></>}/>
-        <Route path='/muiTalbe' element={<MuiTable hackerdataList={currentPosts}/>}/>
+        <Route path='/muiTalbe' element={<MuiTable hackerdataList={hackerdataList}/>}/>
       </Routes>
-      {/* <Pagination
-        postsPerPage={postsPerPage}
-        totalPosts={hackerdataList.length}
-        paginate={paginate}
-      /> */}
     </div>
     </BrowserRouter>
   );
