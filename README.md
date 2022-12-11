@@ -1,3 +1,10 @@
+Go to
+F:\CODELEX\TehniskieUzdevumi\codnity_python\UserInterface\react-ui
+open cmd or powershell type 'npm start'
+
+Go To 
+F:\CODELEX\TehniskieUzdevumi\codnity_python\API\ycombinator\ycombinator
+open cmd or powershell type 'dotnet watch run'
 
 Creating C# backend and React F.E.
 https://www.youtube.com/watch?v=ON-Z1iD6Y-c
