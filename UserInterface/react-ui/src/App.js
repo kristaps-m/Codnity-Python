@@ -5,9 +5,9 @@ import './App.css';
 import {Home} from './Home';
 import Posts from './components/Posts';
 import DataTable from './components/DataTable';
+import MuiTable from './components/MuiTable';
 import Pagination from './components/Pagination';
 import {variables} from './Variables.js'
-import { HackerData } from './HackerData';
 import { BrowserRouter, Route, Routes, NavLink } from 'react-router-dom'; 
 //  Switch
 
@@ -56,6 +56,11 @@ function App() {
               HackerData
             </NavLink>
           </li>
+          <li className='nav-item- m-1'>
+            <NavLink className="btn btn-light btn-outline-primary" to="/muiTalbe">
+              muiTalbe
+            </NavLink>
+          </li>
         </ul>
       </nav>
       {/* <DataTable hackerdataList={currentPosts} loading={loading} />      
@@ -68,12 +73,13 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/hackerdata' element={<>
-        <DataTable hackerdataList={currentPosts} loading={loading} />
-        <Pagination
-        postsPerPage={postsPerPage}
-        totalPosts={hackerdataList.length}
-        paginate={paginate}
-      /></>}/>
+            <DataTable hackerdataList={currentPosts} loading={loading} />
+            <Pagination
+                postsPerPage={postsPerPage}
+                totalPosts={hackerdataList.length}
+                paginate={paginate}
+            /></>}/>
+        <Route path='/muiTalbe' element={<MuiTable hackerdataList={currentPosts}/>}/>
       </Routes>
       {/* <Pagination
         postsPerPage={postsPerPage}
