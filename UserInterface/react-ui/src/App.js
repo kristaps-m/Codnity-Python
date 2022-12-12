@@ -47,7 +47,7 @@ function App() {
           </li>
           <li className='nav-item- m-1'>
             <NavLink className="btn btn-light btn-outline-primary" to="/table">
-              Talbe
+              Y-Combinator data table
             </NavLink>
           </li>
         </ul>

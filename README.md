@@ -45,9 +45,9 @@ https://dotnet.microsoft.com/en-us/download
 </table>
 
 4. Go to <br>
-   ...\codnity_python
+   ...\ycombinator-data-scraper
    open cmd or powershell type 'python ycombinator_scraper.py'
-   absolute path will be different than mine, but if you cloned repository locally, then 'codnity_python' should be the same as mine. And press enter. :smiley:
+   absolute path will be different than mine, but if you cloned repository locally, then 'ycombinator-data-scraper' should be the same as mine. And press enter. :smiley:
 
 <img src="pictures/run_python.png" alt="create_table.png">
 
@@ -67,10 +67,10 @@ https://dotnet.microsoft.com/en-us/download
 
 <img src="pictures/got_data.png" alt="create_table.png">
 
-9. Go to ...\codnity_python\UserInterface\react-ui <br>
+9. Go to ...\ycombinator-data-scraper\UserInterface\react-ui <br>
    open cmd or powershell type 'npm install' and then 'npm start'
 
-10. Go To ...\codnity_python\API\ycombinator\ycombinator <br>
+10. Go To ...\ycombinator-data-scraper\API\ycombinator\ycombinator <br>
     open cmd or powershell type 'dotnet watch run'
 
 11. Now all data is added to database. You can see it using 2 options:
