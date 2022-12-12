@@ -9,6 +9,9 @@ os.system('cls')
 """VARIABLES"""
 big_2d_list = []
 how_many_pages_from_site = 0
+DRIVER = "SQL Server"
+SERVER_NAME = "." # DESKTOP-P3PDNDA
+DATABASE_NAME = "y-combinator"
 
 """
 How it Works?
@@ -107,10 +110,6 @@ def insert_data_to_database():
     [12344, "test title 2", "https://test.link.com", 20, "2022-12-07 17:56:16"]
     ]
 
-  DRIVER = "SQL Server"
-  SERVER_NAME = "DESKTOP-P3PDNDA"
-  DATABASE_NAME = "y-combinator"
-
   conn_string = f"""
     Driver={{{DRIVER}}};
     Server={SERVER_NAME};
@@ -162,10 +161,6 @@ def insert_data_to_database():
 
 #Step 5:
 def update_database():
-  DRIVER = "SQL Server"
-  SERVER_NAME = "DESKTOP-P3PDNDA"
-  DATABASE_NAME = "y-combinator"
-
   conn_string = f"""
     Driver={{{DRIVER}}};
     Server={SERVER_NAME};
