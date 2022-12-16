@@ -12,6 +12,16 @@ https://nodejs.org/en/download/
 Python <br>
 https://www.python.org/downloads/
 
+<p style="color:red;">Do not forget to download and install Python libraries!</p>
+
+- ['Requests' - Home page](https://requests.readthedocs.io/en/latest/)
+- ['Requests' - Installation](https://requests.readthedocs.io/en/latest/user/install/#install)
+
+- ['Beautiful Soup' - Documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+- ['Beautiful Soup' - Installation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup)
+
+- ['pypyodbc' - GitHub page and Installation](https://github.com/pypyodbc/pypyodbc)
+
 .NET 6.0 <br>
 https://dotnet.microsoft.com/en-us/download
 
