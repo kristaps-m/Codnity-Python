@@ -1,3 +1,1 @@
-# Hello, this is for portfolio project I have been working on
-
-## My name is Kristaps and I made this software
+The scraper I created reads data from https://news.ycombinator.com/ (title, link, points, date_created) and stores it to a local SQL database. Scraper also is able to update points for each article. It works with console commands 'import' and 'update'. It has nice React frontend part, witch displays all scraped information using DataTables, 10 entries per package. Project uses 'Microsoft SQL Server Management Studio', 'SQL Server', 'Python' (Python libraries - 'Requests', 'Beautiful Soup' and 'pypyodbc') and '.NET 6.0'. Go to project readme page to see, set up instructions and examples.

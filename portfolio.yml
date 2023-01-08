@@ -1,5 +1,1 @@
-{'projectname': "ycombinator-data-scraper",
-'description': "This is test, to learn more about React. This project scraped data from ycombinator.com",
-'cover-image': "https://raw.githubusercontent.com/kristaps-m/ycombinator-data-scraper/master/portfolio/cover-image.png",
-'image-small':"https://raw.githubusercontent.com/kristaps-m/ycombinator-data-scraper/master/portfolio/image-small.png",
-'README': "https://raw.githubusercontent.com/kristaps-m/ycombinator-data-scraper/master/portfolio/README.md"}
+Web scraper that reads data from 'news.ycombinator.com' and stores it to a local database. Scraper is able to update points for each article. It works as a console command. Contains React frontend and displays all scraped data using DataTables, 10 entries per package.
