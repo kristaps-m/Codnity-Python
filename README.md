@@ -12,7 +12,7 @@ https://nodejs.org/en/download/
 Python <br>
 https://www.python.org/downloads/
 
-<p style="color:red;">Do not forget to download and install Python libraries!</p>
+<p style="color:red;">:exclamation::exclamation::exclamation:Do not forget to download and install Python libraries!</p>
 
 - ['Requests' - Home page](https://requests.readthedocs.io/en/latest/)
 - ['Requests' - Installation](https://requests.readthedocs.io/en/latest/user/install/#install)
