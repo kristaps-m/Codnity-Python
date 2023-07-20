@@ -1,32 +1,3 @@
-## Download and install!
-
-Microsoft SQL Server Management Studio <br>
-https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16
-
-SQL Server <br>
-https://www.microsoft.com/en-us/sql-server/sql-server-downloads
-
-Node Js Latest LTS Version<br>
-https://nodejs.org/en/download/
-
-Python <br>
-https://www.python.org/downloads/
-
-<p style="color:red;">:exclamation::exclamation::exclamation:Do not forget to download and install Python libraries!</p>
-
-- ['Requests' - Home page](https://requests.readthedocs.io/en/latest/)
-- ['Requests' - Installation](https://requests.readthedocs.io/en/latest/user/install/#install)
-
-- ['Beautiful Soup' - Documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
-- ['Beautiful Soup' - Installation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup)
-
-- ['pypyodbc' - GitHub page and Installation](https://github.com/pypyodbc/pypyodbc)
-
-.NET 6.0 <br>
-https://dotnet.microsoft.com/en-us/download
-
-<br>
-
 1. Open your Microsoft SQL Server Management Studio (SQLSMS)
 
 2. Create new database named 'y-combinator'
@@ -103,3 +74,31 @@ You can sort data by <b>title</b> and <b>points</b>! You can try 'Dense padding'
 <img src="pictures/front_end2.png" alt="create_table.png">
 
 12. Now that you can see all the data. You can try to import aditional data using Python script. Or update your data. Make sure you pick same page amount like in first time! Got to step <b>6.</b> and try 'update' !
+
+## If you have trouble launching project. See information below.
+### :exclamation::exclamation: Download and install:exclamation::exclamation:
+
+Microsoft SQL Server Management Studio <br>
+https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16
+
+SQL Server <br>
+https://www.microsoft.com/en-us/sql-server/sql-server-downloads
+
+Node Js Latest LTS Version<br>
+https://nodejs.org/en/download/
+
+Python <br>
+https://www.python.org/downloads/
+
+<p style="color:red;">:exclamation::exclamation::exclamation:Do not forget to download and install Python libraries!</p>
+
+- ['Requests' - Home page](https://requests.readthedocs.io/en/latest/)
+- ['Requests' - Installation](https://requests.readthedocs.io/en/latest/user/install/#install)
+
+- ['Beautiful Soup' - Documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+- ['Beautiful Soup' - Installation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup)
+
+- ['pypyodbc' - GitHub page and Installation](https://github.com/pypyodbc/pypyodbc)
+
+.NET 6.0 <br>
+https://dotnet.microsoft.com/en-us/download
